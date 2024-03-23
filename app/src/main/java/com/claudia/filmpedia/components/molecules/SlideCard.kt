@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 fun SlideCard(imageurl:String, number:Int){
     Spacer(modifier = Modifier.width(16.dp))
     Box(modifier = Modifier.fillMaxWidth()) {
-        Image(imageurl = imageurl)
+        Image(imageurl = imageurl, height = 225.dp, width = 150.dp)
         Box(
             modifier = Modifier.align(Alignment.BottomStart)
         ) {
