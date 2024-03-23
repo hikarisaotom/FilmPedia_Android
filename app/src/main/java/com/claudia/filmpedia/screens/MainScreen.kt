@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 package com.example.bottomnavbardemo
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -13,8 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavHostController
-import com.claudia.filmpedia.navigation.BottomBarItem
-import com.claudia.filmpedia.navigation.CustomBottomNavController
+import com.claudia.filmpedia.navigation.BottomTab.BottomBarItem
+import com.claudia.filmpedia.navigation.BottomTab.CustomBottomNavController
 
 @Composable
 fun MainScreen(navController: NavHostController) {

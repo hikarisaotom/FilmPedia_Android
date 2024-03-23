@@ -1,4 +1,4 @@
-package com.claudia.filmpedia.navigation
+package com.claudia.filmpedia.navigation.BottomTab
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
