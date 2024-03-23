@@ -10,9 +10,15 @@ import com.claudia.filmpedia.navigation.NavBar.TabItem
 
 @Composable
 fun Page(item:TabItem){
+    val url = "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+    val times = 6
+    val urls = mutableListOf<String>()
+    repeat(times) {
+        urls.add(url)
+    }
     Box( modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
+        contentAlignment = Alignment.TopCenter
     ) {
-        CustomRowGrid(items = listOf("Movie 1","Movie 2","Movie 3","Movie 4","Movie 5","Movie 6"))
+        CustomRowGrid(items = urls)
     }
 }
