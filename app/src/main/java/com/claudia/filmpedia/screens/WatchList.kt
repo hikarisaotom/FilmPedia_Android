@@ -15,10 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 fun WatchList(){
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color.Green)){
+        .background(Color.Gray)){
         Text(
-            text = "Hello !",
-            color = Color.Cyan,
+            text = "watchlist",
+            color = Color.White,
             fontSize = MaterialTheme.typography.titleMedium.fontSize,
             fontWeight = FontWeight.Bold,
         )

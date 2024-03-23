@@ -8,20 +8,20 @@ import com.claudia.filmpedia.screens.Search
 import com.claudia.filmpedia.screens.WatchList
 
 @Composable
-fun BottomNavGraph(navController : NavHostController) {
+fun CustomBottomNavController(navController : NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreen.Home.route
+        startDestination = BottomBarItem.Home.route
     ) {
-        composable(BottomBarScreen.Home.route) {
+        composable(BottomBarItem.Home.route) {
             HomeScreen()
         }
 
-        composable(BottomBarScreen.Search.route) {
+        composable(BottomBarItem.Search.route) {
             Search()
         }
 
-        composable(BottomBarScreen.WatchList.route) {
+        composable(BottomBarItem.WatchList.route) {
             WatchList()
         }
     }

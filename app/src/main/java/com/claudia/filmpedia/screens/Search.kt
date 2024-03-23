@@ -17,8 +17,8 @@ fun Search(){
         .fillMaxSize()
         .background(Color.Gray)){
         Text(
-            text = "Hello !",
-            color = Color.Cyan,
+            text = "SEARCH",
+            color = Color.White,
             fontSize = MaterialTheme.typography.titleMedium.fontSize,
             fontWeight = FontWeight.Bold,
         )
