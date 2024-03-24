@@ -5,9 +5,10 @@ import com.claudia.filmpedia.data.local.NowPlayingEntity
 import com.claudia.filmpedia.data.local.TopRatedEntity
 import com.claudia.filmpedia.data.local.UpcomingEntity
 import com.claudia.filmpedia.data.remote.MovieDto
+import com.claudia.filmpedia.data.remote.Trailer
 import com.claudia.filmpedia.domain.Movie
 
-fun MovieDto.toMovieEntity():MovieEntity{
+fun MovieDto.toMovieEntity(video:Trailer?):MovieEntity{
     return MovieEntity(
         id = id,
         title = title,
@@ -16,12 +17,13 @@ fun MovieDto.toMovieEntity():MovieEntity{
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
-        overwiew = overview
+        overwiew = overview,
+        videoKey = video?.key ?: ""
 
     )
 }
 
-fun MovieDto.toNowPlayingEntity():NowPlayingEntity{
+fun MovieDto.toNowPlayingEntity(video: Trailer?):NowPlayingEntity{
     return NowPlayingEntity(
         id = id,
         title = title,
@@ -30,11 +32,12 @@ fun MovieDto.toNowPlayingEntity():NowPlayingEntity{
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
-        overwiew = overview
+        overwiew = overview,
+        videoKey = video?.key ?: ""
     )
 }
 
-fun MovieDto.toUpcomingEntity():UpcomingEntity{
+fun MovieDto.toUpcomingEntity(video: Trailer?):UpcomingEntity{
     return UpcomingEntity(
         id = id,
         title = title,
@@ -44,10 +47,11 @@ fun MovieDto.toUpcomingEntity():UpcomingEntity{
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
         overwiew = overview,
+        videoKey = video?.key ?: ""
     )
 }
 
-fun MovieDto.toTopRatedEntity():TopRatedEntity{
+fun MovieDto.toTopRatedEntity(video:Trailer?):TopRatedEntity{
     return TopRatedEntity(
         id = id,
         title = title,
@@ -56,7 +60,8 @@ fun MovieDto.toTopRatedEntity():TopRatedEntity{
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
-        overwiew = overview
+        overwiew = overview,
+        videoKey = video?.key ?: ""
     )
 }
 
@@ -68,7 +73,8 @@ fun NowPlayingEntity.toMovie():Movie{
         duration=duration,
         imageUrl = imageUrl,
         genre = genre,
-        overwiew = overwiew
+        overwiew = overwiew,
+       videoKey = videoKey
     )
 }
 
@@ -80,7 +86,8 @@ fun UpcomingEntity.toMovie():Movie{
         duration=duration,
         imageUrl = imageUrl,
         genre = genre,
-        overwiew = overwiew
+        overwiew = overwiew,
+        videoKey = videoKey
     )
 }
 
@@ -93,7 +100,8 @@ fun TopRatedEntity.toMovie():Movie{
         duration=duration,
         imageUrl = imageUrl,
         genre = genre,
-        overwiew = overwiew
+        overwiew = overwiew,
+        videoKey = videoKey
     )
 }
 
@@ -105,6 +113,7 @@ fun MovieEntity.toMovie():Movie{
         duration=duration,
         imageUrl = imageUrl,
         genre = genre,
-        overwiew = overwiew
+        overwiew = overwiew,
+        videoKey = videoKey
     )
 }

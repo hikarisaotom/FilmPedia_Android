@@ -8,4 +8,5 @@ data class Movie(
     val imageUrl:String,
     val genre:String,
     val overwiew:String,
+    val videoKey:String,
 )

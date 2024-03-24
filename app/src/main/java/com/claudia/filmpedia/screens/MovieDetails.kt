@@ -44,9 +44,7 @@ fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
                 onInfoClick = { print("adding") })
             if (movie != null) {
                 ProfileBanner(
-                    imageUrl = movie.imageUrl,
-                    videoUrl = movie.imageUrl,
-                    title = movie.title
+                    movie=movie
                 )
                 Column(modifier = Modifier.padding(8.dp)) {
                     Row() {

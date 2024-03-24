@@ -16,17 +16,16 @@ import androidx.compose.ui.unit.sp
 import com.claudia.filmpedia.components.atoms.CustomYoutubePlayer
 import com.claudia.filmpedia.components.atoms.Image
 import com.claudia.filmpedia.components.atoms.InformationItem
+import com.claudia.filmpedia.domain.Movie
 
 @Composable
 fun ProfileBanner(
-    imageUrl:String,
-    videoUrl:String,
-    title:String
+    movie:Movie
 ) {
     Box(modifier = Modifier.fillMaxWidth()) {
      Row() {
          CustomYoutubePlayer(
-             videoId = "kShAS6aafOU",
+             videoId = movie.videoKey,
              lifecycleOwner = LocalLifecycleOwner.current
          )
 
@@ -37,7 +36,7 @@ fun ProfileBanner(
         ) {
             Box(modifier = Modifier
                 .background(color = Color.Gray, shape = RoundedCornerShape(16.dp))) {
-                InformationItem(icon = Icons.Outlined.Star, text = "9.5", color = Color.Yellow)
+                InformationItem(icon = Icons.Outlined.Star, text = movie.rate.toString(), color = Color.Yellow)
             }
         }
         Row(
@@ -46,16 +45,15 @@ fun ProfileBanner(
                 .align(Alignment.BottomStart)
 
         ) {
-            Image(imageurl =imageUrl, height = 200.dp, width = 150.dp, padding = 12.dp)
+            Image(imageurl =movie.imageUrl, height = 200.dp, width = 150.dp, padding = 12.dp)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = title,
+            Text(text = movie.title,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 fontSize = 24.sp,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(top = 30.dp))
-
 
         }
     }

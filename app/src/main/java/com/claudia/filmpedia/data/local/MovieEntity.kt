@@ -14,6 +14,7 @@ data class MovieEntity(
     val imageUrl: String,
     val genre: String,
     val overwiew:String,
+    val videoKey:String,
 )
 
 @Entity
@@ -27,6 +28,7 @@ data class NowPlayingEntity(
     val imageUrl: String,
     val genre: String,
     val overwiew:String,
+    val videoKey:String,
 )
 
 @Entity
@@ -40,6 +42,7 @@ data class UpcomingEntity(
     val imageUrl: String,
     val genre: String,
     val overwiew:String,
+    val videoKey:String,
 )
 
 @Entity
@@ -53,6 +56,7 @@ data class TopRatedEntity(
     val imageUrl: String,
     val genre: String,
     val overwiew:String,
+    val videoKey:String,
 )
 
 
@@ -67,6 +71,7 @@ data class WatchlistEntity(
     val imageUrl: String,
     val genre: String,
     val overwiew:String,
+    val videoKey:String,
 )
 
 

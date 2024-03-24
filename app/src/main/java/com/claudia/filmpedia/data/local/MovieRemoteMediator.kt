@@ -35,7 +35,12 @@ class MovieRemoteMediator (
                 if(loadType == LoadType.REFRESH){
                     movieDb.dao.clearAll()
                 }
-                val movieEntities = movies.map {  it.toMovieEntity()}
+                val movieEntities = movies.map {
+                    val trailers=movieApi.getMovieVideos(movieId = it.id, apiKey = MovieApi.API_KEY)
+                    it.toMovieEntity(
+                        if (trailers.results.isNotEmpty()) trailers.results[0] else null
+                    )
+                }
                 movieDb.dao.upsertAll(movieEntities)
             }
 
@@ -71,7 +76,12 @@ class UpcomingRemoteMediator (
                     movieDb.dao.clearUpcomingAll()
                 }
 
-                val upcomingEntities = upcoming.map {  it.toUpcomingEntity()}
+                val upcomingEntities = upcoming.map {
+                    val trailers=movieApi.getMovieVideos(movieId = it.id, apiKey = MovieApi.API_KEY)
+                    it.toUpcomingEntity(
+                        if (trailers.results.isNotEmpty()) trailers.results[0] else null
+                    )
+                }
                 movieDb.dao.upsertUpcomingAll(upcomingEntities)
             }
 
@@ -110,7 +120,12 @@ class TopRatedRemoteMediator (
                 if(loadType == LoadType.REFRESH){
                     movieDb.dao.clearTopRatedAll()
                 }
-                val topRatedEntities = topRated.map { it.toTopRatedEntity()}
+                val topRatedEntities = topRated.map {
+                        val trailers=movieApi.getMovieVideos(movieId = it.id, apiKey = MovieApi.API_KEY)
+                            it.toTopRatedEntity(
+                                if (trailers.results.isNotEmpty()) trailers.results[0] else null
+                            )
+                }
                 movieDb.dao.upsertTopRatedAll(topRatedEntities)
             }
             MediatorResult.Success(
@@ -147,7 +162,12 @@ class NowPlayingRemoteMediator (
                 if(loadType == LoadType.REFRESH){
                     movieDb.dao.clearNowPlayingAll()
                 }
-                val nowPlayingEntity = nowPlaying.map { it.toNowPlayingEntity() }
+                val nowPlayingEntity = nowPlaying.map {
+                    val trailers=movieApi.getMovieVideos(movieId = it.id, apiKey = MovieApi.API_KEY)
+                    it.toNowPlayingEntity(
+                        if (trailers.results.isNotEmpty()) trailers.results[0] else null
+                    )
+                }
                 movieDb.dao.upsertNowPlayingAll(nowPlayingEntity)
             }
 

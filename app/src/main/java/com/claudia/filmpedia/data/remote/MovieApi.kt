@@ -5,6 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Path
 
 interface MovieApi {
 
@@ -28,7 +29,11 @@ interface MovieApi {
     suspend fun getTopRatedMovies(
         @Query("api_key") apiKey: String
     ): MovieResponse
-
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): MovieTrailers
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val API_KEY = "7a30c243665f85825e8f7e6ae19711fa"
