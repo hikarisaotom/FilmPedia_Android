@@ -4,6 +4,7 @@ import com.claudia.filmpedia.data.local.MovieEntity
 import com.claudia.filmpedia.data.local.NowPlayingEntity
 import com.claudia.filmpedia.data.local.TopRatedEntity
 import com.claudia.filmpedia.data.local.UpcomingEntity
+import com.claudia.filmpedia.data.local.WatchlistEntity
 import com.claudia.filmpedia.data.remote.MovieDto
 import com.claudia.filmpedia.data.remote.Trailer
 import com.claudia.filmpedia.domain.Movie
@@ -67,6 +68,7 @@ fun MovieDto.toTopRatedEntity(video:Trailer?):TopRatedEntity{
 
 fun NowPlayingEntity.toMovie():Movie{
     return Movie(
+        id = id,
         title = title,
         rate = rate,
         year=year,
@@ -78,8 +80,23 @@ fun NowPlayingEntity.toMovie():Movie{
     )
 }
 
+fun WatchlistEntity.toMovie():Movie{
+    return Movie(
+        id = id,
+        title = title,
+        rate = rate,
+        year=year,
+        duration=duration,
+        imageUrl = imageUrl,
+        genre = genre,
+        overwiew = overwiew,
+        videoKey = videoKey
+    )
+}
+
 fun UpcomingEntity.toMovie():Movie{
     return Movie(
+        id = id,
         title = title,
         rate = rate,
         year=year,
@@ -94,6 +111,7 @@ fun UpcomingEntity.toMovie():Movie{
 
 fun TopRatedEntity.toMovie():Movie{
     return Movie(
+        id = id,
         title = title,
         rate = rate,
         year=year,
@@ -107,6 +125,22 @@ fun TopRatedEntity.toMovie():Movie{
 
 fun MovieEntity.toMovie():Movie{
     return Movie(
+        id = id,
+        title = title,
+        rate = rate,
+        year=year,
+        duration=duration,
+        imageUrl = imageUrl,
+        genre = genre,
+        overwiew = overwiew,
+        videoKey = videoKey
+    )
+}
+
+
+fun Movie.toWatchlistEntity():WatchlistEntity{
+    return WatchlistEntity(
+        id =id,
         title = title,
         rate = rate,
         year=year,

@@ -1,6 +1,8 @@
 package com.claudia.filmpedia.data.local
 import androidx.paging.PagingSource
 import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Upsert
 
@@ -32,11 +34,6 @@ interface MovieDao {
     @Query("SELECT * FROM topratedentity")
     fun pagingTopRatedSource(): PagingSource<Int, TopRatedEntity>
 
-    @Query("SELECT * FROM watchlistentity")
-    fun pagingWatchlistSource(): PagingSource<Int, WatchlistEntity>
-
-
-
     @Query("DELETE FROM movieentity")
     suspend fun clearAll()
 
@@ -51,4 +48,16 @@ interface MovieDao {
 
     @Query("DELETE FROM topratedentity")
     suspend fun clearTopRatedAll()
+
+    //Watchlist
+    @Query("DELETE FROM watchlistentity WHERE id = :id")
+    suspend fun deleteById(id: Int)
+    @Insert
+    suspend fun insert(movie: WatchlistEntity)
+    @Query("SELECT * FROM watchlistentity")
+    fun pagingWatchlistSource(): PagingSource<Int, WatchlistEntity>
+
+
+
+
 }

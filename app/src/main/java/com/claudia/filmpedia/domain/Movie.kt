@@ -1,6 +1,7 @@
 package com.claudia.filmpedia.domain
 
 data class Movie(
+    val id:Int,
     val title: String,
     val rate: Double,
     val year: Int,

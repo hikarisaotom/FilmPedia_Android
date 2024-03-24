@@ -37,7 +37,8 @@ fun MovieDetailsPreview(movie: Movie, onClick: () -> Unit, viewModel: MovieViewM
             .clip(RoundedCornerShape(4.dp))
             .background(Color.DarkGray)
             .padding(8.dp)
-            .clickable (onClick = {viewModel.selectMovie(movie = movie)
+            .clickable (onClick = {
+                viewModel.selectMovie(movie = movie)
                 onClick()
             } ),
         verticalAlignment = Alignment.CenterVertically

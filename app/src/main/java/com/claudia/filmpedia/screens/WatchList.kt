@@ -22,7 +22,7 @@ import com.claudia.filmpedia.presentation.MovieViewModel
 
 @Composable
 fun WatchList(onClick:()->Unit, viewModel:MovieViewModel){
-    val movies= viewModel.moviePagingFlow.collectAsLazyPagingItems()
+    val movies= viewModel.watchlistPagingFlow.collectAsLazyPagingItems()
     Box(modifier = Modifier
         .fillMaxSize()
         .background(colorResource(id = R.color.blue_background))){

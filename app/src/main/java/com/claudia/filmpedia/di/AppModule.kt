@@ -14,6 +14,7 @@ import com.claudia.filmpedia.data.local.TopRatedEntity
 import com.claudia.filmpedia.data.local.TopRatedRemoteMediator
 import com.claudia.filmpedia.data.local.UpcomingEntity
 import com.claudia.filmpedia.data.local.UpcomingRemoteMediator
+import com.claudia.filmpedia.data.local.WatchlistEntity
 import com.claudia.filmpedia.data.remote.MovieApi
 import dagger.Module
 import dagger.Provides
@@ -92,6 +93,17 @@ object AppModule {
             remoteMediator = NowPlayingRemoteMediator(movieDb,movieApi),
             pagingSourceFactory = {
                 movieDb.dao.pagingNowPlayingSource()
+            }
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun WatchListPager(movieDb:MovieDatabase, movieApi:MovieApi):Pager<Int,WatchlistEntity>{
+        return Pager(
+            config = PagingConfig(pageSize = 1),
+            pagingSourceFactory = {
+                movieDb.dao.pagingWatchlistSource()
             }
         )
     }
