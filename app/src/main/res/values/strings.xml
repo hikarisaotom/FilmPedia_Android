@@ -2,6 +2,11 @@
     <string name="app_name">FilmPedia</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
+    <string name="search_empty_title">We Are Sorry, We Can Not find the Movie :(</string>
+    <string name="search_empty_subtitle">Find your movie by Type title, categories, years, etc</string>
     <string name="watchlist">Watch List</string>
+    <string name="watchlist_empty_title">There Is No Movie Yet!</string>
+    <string name="watchlist_empty_subtitle">Find your movie by Type title, categories, years, etc</string>
+
 
 </resources>
