@@ -4,20 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.claudia.filmpedia.components.template.MovieTestList
+import com.claudia.filmpedia.components.atoms.CustomYoutubePlayer
 import com.claudia.filmpedia.presentation.MovieViewModel
 import com.claudia.filmpedia.ui.theme.FilmPediaTheme
 import com.example.bottomnavbardemo.MainScreen
@@ -35,7 +28,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = colorResource(id = R.color.blue_background)
                 ) {
-//
                     val viewModel = hiltViewModel<MovieViewModel>()
                     MainScreen(navController=navController,viewModel= viewModel)
                 }

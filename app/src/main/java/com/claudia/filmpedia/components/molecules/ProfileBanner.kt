@@ -1,11 +1,11 @@
 package com.claudia.filmpedia.components.molecules
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
-import com.claudia.filmpedia.components.atoms.BorderNumber
+import com.claudia.filmpedia.components.atoms.CustomYoutubePlayer
 import com.claudia.filmpedia.components.atoms.Image
 
 @Composable
@@ -14,7 +14,10 @@ fun ProfileBanner(
     videoUrl:String,
 ) {
     Box(modifier = Modifier.fillMaxWidth()) {
-        Image(imageurl =videoUrl, height = 300.dp, width = 500.dp)
+        CustomYoutubePlayer(
+            videoId = "kShAS6aafOU",
+            lifecycleOwner = LocalLifecycleOwner.current
+        )
         Box(
             modifier = Modifier.align(Alignment.BottomStart)
         ) {
