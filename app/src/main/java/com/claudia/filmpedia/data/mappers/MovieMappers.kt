@@ -15,7 +15,9 @@ fun MovieDto.toMovieEntity():MovieEntity{
         year=2019,
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title
+        genre = title,
+        overwiew = overview
+
     )
 }
 
@@ -27,7 +29,8 @@ fun MovieDto.toNowPlayingEntity():NowPlayingEntity{
         year=2019,
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title
+        genre = title,
+        overwiew = overview
     )
 }
 
@@ -39,7 +42,8 @@ fun MovieDto.toUpcomingEntity():UpcomingEntity{
         year=2019,
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title
+        genre = title,
+        overwiew = overview,
     )
 }
 
@@ -51,7 +55,8 @@ fun MovieDto.toTopRatedEntity():TopRatedEntity{
         year=2019,
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title
+        genre = title,
+        overwiew = overview
     )
 }
 
@@ -62,7 +67,8 @@ fun NowPlayingEntity.toMovie():Movie{
         year=year,
         duration=duration,
         imageUrl = imageUrl,
-        genre = genre
+        genre = genre,
+        overwiew = overwiew
     )
 }
 
@@ -73,7 +79,8 @@ fun UpcomingEntity.toMovie():Movie{
         year=year,
         duration=duration,
         imageUrl = imageUrl,
-        genre = genre
+        genre = genre,
+        overwiew = overwiew
     )
 }
 
@@ -85,7 +92,8 @@ fun TopRatedEntity.toMovie():Movie{
         year=year,
         duration=duration,
         imageUrl = imageUrl,
-        genre = genre
+        genre = genre,
+        overwiew = overwiew
     )
 }
 
@@ -96,6 +104,7 @@ fun MovieEntity.toMovie():Movie{
         year=year,
         duration=duration,
         imageUrl = imageUrl,
-        genre = genre
+        genre = genre,
+        overwiew = overwiew
     )
 }

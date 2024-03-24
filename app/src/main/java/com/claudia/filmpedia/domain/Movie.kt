@@ -7,4 +7,5 @@ data class Movie(
     val duration: Int,
     val imageUrl:String,
     val genre:String,
+    val overwiew:String,
 )
