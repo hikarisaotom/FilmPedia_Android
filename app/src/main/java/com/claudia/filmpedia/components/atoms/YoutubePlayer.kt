@@ -19,7 +19,8 @@ fun CustomYoutubePlayer(
     lifecycleOwner: LifecycleOwner
 ) {
     AndroidView(
-        modifier = Modifier.fillMaxWidth().padding(8.dp).clip(RoundedCornerShape(16.dp)),
+        modifier = Modifier.fillMaxWidth()
+            .padding(8.dp).clip(RoundedCornerShape(16.dp)),
         factory = { context->
             YouTubePlayerView(context = context).apply {
                 lifecycleOwner.lifecycle.addObserver(this)
@@ -29,6 +30,8 @@ fun CustomYoutubePlayer(
                         youTubePlayer.cueVideo(videoId,0f)
                     }
                 })
+
+
             }
         }
     )

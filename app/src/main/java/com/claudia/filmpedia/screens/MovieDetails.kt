@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.atoms.InformationItem
@@ -37,19 +38,37 @@ fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
             .background(colorResource(id = R.color.blue_background))
     ) {
         Column() {
-            Header(title = "Detail", onBackClick = { navController.popBackStack()}, onInfoClick = { print("adding")})
-           if(movie!=null){
-               ProfileBanner(imageUrl = movie.imageUrl,
-                            videoUrl = movie.imageUrl)
-               Row() {
-                   InformationItem(icon = Icons.Outlined.DateRange, text = movie.year.toString() )
-                   InformationItem(icon = Icons.Outlined.CheckCircle, text = movie.duration.toString() )
-                   InformationItem(icon = Icons.Outlined.Info, text = movie.genre.toString() )
+            Header(
+                title = "Detail",
+                onBackClick = { navController.popBackStack() },
+                onInfoClick = { print("adding") })
+            if (movie != null) {
+                ProfileBanner(
+                    imageUrl = movie.imageUrl,
+                    videoUrl = movie.imageUrl,
+                    title = movie.title
+                )
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Row() {
+                        InformationItem(icon = Icons.Outlined.DateRange, text = movie.year.toString())
+                        InformationItem(
+                            icon = Icons.Outlined.CheckCircle,
+                            text = movie.duration.toString()
+                        )
+                        InformationItem(icon = Icons.Outlined.Info, text = movie.genre.toString())
 
-               }
-               Text(text = movie.overwiew, textAlign = TextAlign.Justify, modifier = Modifier.fillMaxWidth().padding(8.dp),
-                   color = Color.White,)
-           }
+                    }
+                    Text(
+                        text = movie.overwiew,
+                        textAlign = TextAlign.Justify,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        color = Color.White,
+                        fontSize = 22.sp,
+                    )
+                }
+            }
         }
     }
 }
