@@ -11,7 +11,7 @@ interface MovieApi {
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(
         @Query("api_key") apiKey: String
-    ): Any
+    ): MovieResponse
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
@@ -22,12 +22,12 @@ interface MovieApi {
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
         @Query("api_key") apiKey: String
-    ): List<MovieDto>
+    ): MovieResponse
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
         @Query("api_key") apiKey: String
-    ): List<MovieDto>
+    ): MovieResponse
 
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"

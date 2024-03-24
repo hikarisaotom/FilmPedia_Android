@@ -34,10 +34,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                   MainScreen(navController=navController)
+//
                     val viewModel = hiltViewModel<MovieViewModel>()
                     val movies= viewModel.moviePagingFlow.collectAsLazyPagingItems()
-                    MovieTestList(movies =movies )
+//                    MovieTestList( movies =movies)
+                    MainScreen(navController=navController, movies =movies)
                 }
             }
         }

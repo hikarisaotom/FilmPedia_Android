@@ -8,12 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.compose.LazyPagingItems
 import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.molecules.HorizontalImageList
+import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.navigation.NavBar.Navbar
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(movies: LazyPagingItems<Movie>){
     Box(modifier = Modifier
         .fillMaxSize()
         .background(colorResource(id = R.color.blue_background))){
@@ -24,10 +26,4 @@ fun HomeScreen(){
        }
 
     }
-}
-
-@Preview
-@Composable
-fun previewHome(){
-    HomeScreen()
 }
