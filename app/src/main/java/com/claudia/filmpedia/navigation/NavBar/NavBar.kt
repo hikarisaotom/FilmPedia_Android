@@ -13,12 +13,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.paging.compose.LazyPagingItems
 import com.claudia.filmpedia.components.template.CustomHorizontalPager
 import com.claudia.filmpedia.components.template.CustomTabRow
+import com.claudia.filmpedia.domain.Movie
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Navbar() {
+fun Navbar(upcoming: LazyPagingItems<Movie>,
+           topRated: LazyPagingItems<Movie>,
+           nowplaying: LazyPagingItems<Movie>
+) {
     var selectedTabIndex by remember {
         mutableStateOf(0)
     }
@@ -29,10 +34,15 @@ fun Navbar() {
     LaunchedEffect(pagerState.currentPage) {
         selectedTabIndex = pagerState.currentPage
     }
-
+    val tabItems = listOf(
+        TabItem(title="Now playing", items = nowplaying),
+        TabItem(title="Upcoming", items = upcoming),
+        TabItem(title="Top rated", items = topRated),
+    )
     Column(modifier = Modifier.fillMaxSize()) {
         CustomTabRow(selectedTabIndex = selectedTabIndex,
-            onTabSelected = { index -> selectedTabIndex = index })
-        CustomHorizontalPager(pagerState = pagerState)
+            onTabSelected = { index -> selectedTabIndex = index }, tabItems= tabItems)
+
+        CustomHorizontalPager(pagerState = pagerState, tabItems= tabItems)
     }
 }

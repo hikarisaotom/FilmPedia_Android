@@ -1,15 +1,19 @@
 package com.claudia.filmpedia.components.molecules
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
+import androidx.paging.compose.LazyPagingItems
+import com.claudia.filmpedia.domain.Movie
 
 @Composable
-fun HorizontalImageList(imageUrls: List<String>) {
+fun HorizontalImageList(movies: LazyPagingItems<Movie>) {
     LazyRow {
-        items(imageUrls.size) { index ->
-            SlideCard(
-                imageurl = imageUrls[index],
-                number = index+1
-            )
+        items(movies.itemCount) { index ->
+           if(movies[index]!=null){
+               SlideCard(
+                   movie = movies[index]!!,
+                   number = index+1
+               )
+           }
 
         }
     }

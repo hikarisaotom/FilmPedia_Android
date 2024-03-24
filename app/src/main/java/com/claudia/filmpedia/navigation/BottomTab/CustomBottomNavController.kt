@@ -10,13 +10,20 @@ import com.claudia.filmpedia.screens.Search
 import com.claudia.filmpedia.screens.WatchList
 
 @Composable
-fun CustomBottomNavController(navController : NavHostController, movies: LazyPagingItems<Movie>) {
+fun CustomBottomNavController(navController : NavHostController,
+                              movies: LazyPagingItems<Movie>,
+                              upcoming: LazyPagingItems<Movie>,
+                              topRated: LazyPagingItems<Movie>,
+                              nowplaying: LazyPagingItems<Movie>,) {
     NavHost(
         navController = navController,
         startDestination = BottomBarItem.Home.route
     ) {
         composable(BottomBarItem.Home.route) {
-            HomeScreen(movies=movies)
+            HomeScreen( movies = movies,
+                upcoming = upcoming,
+                topRated = topRated,
+                nowplaying = nowplaying,)
         }
 
         composable(BottomBarItem.Search.route) {

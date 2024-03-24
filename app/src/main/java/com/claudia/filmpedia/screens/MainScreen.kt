@@ -1,5 +1,7 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.bottomnavbardemo
+
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
@@ -25,11 +27,18 @@ import com.claudia.filmpedia.navigation.BottomTab.BottomBarItem
 import com.claudia.filmpedia.navigation.BottomTab.CustomBottomNavController
 
 @Composable
-fun MainScreen(navController: NavHostController, movies: LazyPagingItems<Movie>) {
+fun MainScreen(
+    navController: NavHostController,
+    movies: LazyPagingItems<Movie>,
+    upcoming: LazyPagingItems<Movie>,
+    topRated: LazyPagingItems<Movie>,
+    nowplaying: LazyPagingItems<Movie>,
+) {
     val context = LocalContext.current
-    LaunchedEffect(key1 = movies){
-        if (movies.loadState.refresh is LoadState.Error){
-            Toast.makeText(context,
+    LaunchedEffect(key1 = movies) {
+        if (movies.loadState.refresh is LoadState.Error) {
+            Toast.makeText(
+                context,
                 "Error Loading information",
                 Toast.LENGTH_LONG
             ).show()
@@ -40,7 +49,7 @@ fun MainScreen(navController: NavHostController, movies: LazyPagingItems<Movie>)
         BottomBarItem.Search,
         BottomBarItem.WatchList,
     )
-    var selectedItemIndex by rememberSaveable{
+    var selectedItemIndex by rememberSaveable {
         mutableStateOf(0)
     }
 
@@ -49,10 +58,16 @@ fun MainScreen(navController: NavHostController, movies: LazyPagingItems<Movie>)
             NavigationBar {
                 screens.forEachIndexed { index, item ->
                     NavigationBarItem(selected = index == selectedItemIndex,
-                        onClick = { selectedItemIndex = index
-                                  navController.navigate(item.route)
-                                  },
-                    icon = {Icon(imageVector = if(selectedItemIndex == index) item.icon else item.unselectedIcon, contentDescription = item.title)},
+                        onClick = {
+                            selectedItemIndex = index
+                            navController.navigate(item.route)
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = if (selectedItemIndex == index) item.icon else item.unselectedIcon,
+                                contentDescription = item.title
+                            )
+                        },
                         label = {
                             Text(text = item.title)
                         }
@@ -62,6 +77,12 @@ fun MainScreen(navController: NavHostController, movies: LazyPagingItems<Movie>)
             }
         }
     ) {
-        CustomBottomNavController(navController = navController, movies=movies)
+        CustomBottomNavController(
+            navController = navController,
+            movies = movies,
+            upcoming = upcoming,
+            topRated = topRated,
+            nowplaying = nowplaying,
+        )
     }
 }
