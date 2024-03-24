@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -21,10 +22,8 @@ import com.claudia.filmpedia.navigation.NavBar.Navbar
 import com.claudia.filmpedia.presentation.MovieViewModel
 
 @Composable
-fun HomeScreen(movies: LazyPagingItems<Movie>,
-               upcoming: LazyPagingItems<Movie>,
-               topRated: LazyPagingItems<Movie>,
-               nowplaying: LazyPagingItems<Movie>,){
+fun HomeScreen(onClick:()->Unit, viewModel: MovieViewModel){
+    val movies= viewModel.moviePagingFlow.collectAsLazyPagingItems()
     Box(modifier = Modifier
         .fillMaxSize()
         .background(colorResource(id = R.color.blue_background))){
@@ -34,10 +33,8 @@ fun HomeScreen(movies: LazyPagingItems<Movie>,
             )
         }else{
             Column {
-                HorizontalImageList( movies = movies)
-                Navbar( upcoming = upcoming,
-                    topRated = topRated,
-                    nowplaying = nowplaying,)
+                HorizontalImageList( movies = movies,onClick=onClick)
+                Navbar(  viewModel=viewModel,onClick=onClick)
             }
         }
 

@@ -10,7 +10,10 @@ import com.claudia.filmpedia.data.local.NowPlayingEntity
 import com.claudia.filmpedia.data.local.TopRatedEntity
 import com.claudia.filmpedia.data.local.UpcomingEntity
 import com.claudia.filmpedia.data.mappers.toMovie
+import com.claudia.filmpedia.domain.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 @HiltViewModel
@@ -20,6 +23,9 @@ class MovieViewModel @Inject constructor(
     nowPlayingPager:Pager<Int,NowPlayingEntity>,
     topRatedPager:Pager<Int,TopRatedEntity>,
 ):ViewModel(){
+    private val _currentMovie = MutableStateFlow<Movie?>(null)
+    val currentMovie = _currentMovie.asStateFlow()
+
     val moviePagingFlow = pager.
     flow.
     map { pagingData-> pagingData.map { it.toMovie() }}
@@ -39,4 +45,12 @@ class MovieViewModel @Inject constructor(
     flow.
     map { pagingData-> pagingData.map { it.toMovie() }}
         .cachedIn(viewModelScope)
+
+    fun selectMovie(movie: Movie) {
+        _currentMovie.value = movie
+    }
+
+    fun clearCurrentMovie() {
+        _currentMovie.value = null
+    }
 }

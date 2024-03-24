@@ -14,10 +14,11 @@ import androidx.paging.compose.items
 import com.claudia.filmpedia.components.molecules.EmptyComponent
 import com.claudia.filmpedia.components.molecules.MovieDetailsPreview
 import com.claudia.filmpedia.domain.Movie
+import com.claudia.filmpedia.presentation.MovieViewModel
 
 @Composable
 
-fun MovieDetailList(movieList: LazyPagingItems<Movie>, emptyTitle:String, emptySubtitle:String, emptyImg:Int) {
+fun MovieDetailList(viewModel:MovieViewModel, onClick: () -> Unit = {}, movieList: LazyPagingItems<Movie>, emptyTitle:String, emptySubtitle:String, emptyImg:Int) {
     Box(modifier = Modifier.fillMaxSize()){
         if(movieList.loadState.refresh is LoadState.Loading){
             CircularProgressIndicator(
@@ -30,7 +31,7 @@ fun MovieDetailList(movieList: LazyPagingItems<Movie>, emptyTitle:String, emptyS
                 LazyColumn() {
                     items(movieList){ movie->
                         if(movie!=null){
-                            MovieDetailsPreview(movie=movie)
+                            MovieDetailsPreview(movie=movie, onClick = onClick, viewModel=viewModel)
                         }
 
                     }

@@ -1,6 +1,7 @@
 package com.claudia.filmpedia.components.molecules
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,16 +26,20 @@ import androidx.compose.ui.unit.sp
 import com.claudia.filmpedia.components.atoms.Image
 import com.claudia.filmpedia.components.atoms.InformationItem
 import com.claudia.filmpedia.domain.Movie
+import com.claudia.filmpedia.presentation.MovieViewModel
 
 
 @Composable
-fun MovieDetailsPreview(movie: Movie){
+fun MovieDetailsPreview(movie: Movie, onClick: () -> Unit, viewModel: MovieViewModel){
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp))
             .background(Color.DarkGray)
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable (onClick = {viewModel.selectMovie(movie = movie)
+                onClick()
+            } ),
         verticalAlignment = Alignment.CenterVertically
     ) {
      Image(imageurl = movie.imageUrl, height = 200.dp, width =150.dp )

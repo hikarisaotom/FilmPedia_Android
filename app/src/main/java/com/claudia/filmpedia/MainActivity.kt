@@ -36,15 +36,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 //
                     val viewModel = hiltViewModel<MovieViewModel>()
-                    val movies= viewModel.moviePagingFlow.collectAsLazyPagingItems()
-                    val upcoming= viewModel.upComingPagingFlow.collectAsLazyPagingItems()
-                    val topRated= viewModel.topRatedPagingFlow.collectAsLazyPagingItems()
-                    val nowplaying= viewModel.nowPlayingPagingFlow.collectAsLazyPagingItems()
-                    MainScreen(navController=navController, movies =movies,
-                        upcoming=upcoming,
-                        topRated=topRated,
-                        nowplaying=nowplaying,
-                    )
+                    MainScreen(navController=navController,viewModel= viewModel)
                 }
             }
         }

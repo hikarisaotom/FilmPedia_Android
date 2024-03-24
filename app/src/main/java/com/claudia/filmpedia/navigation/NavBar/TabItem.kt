@@ -6,5 +6,6 @@ import com.claudia.filmpedia.domain.Movie
 data class TabItem(
     val title: String,
     val items:LazyPagingItems<Movie>,
+    val onClick: ()->Unit,
 )
 

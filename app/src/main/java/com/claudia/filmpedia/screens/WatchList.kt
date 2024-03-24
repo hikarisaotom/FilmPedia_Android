@@ -12,17 +12,24 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.template.MovieDetailList
 import com.claudia.filmpedia.domain.Movie
+import com.claudia.filmpedia.presentation.MovieViewModel
 
 @Composable
-fun WatchList(movies: LazyPagingItems<Movie>){
+fun WatchList(onClick:()->Unit, viewModel:MovieViewModel){
+    val movies= viewModel.moviePagingFlow.collectAsLazyPagingItems()
     Box(modifier = Modifier
         .fillMaxSize()
         .background(colorResource(id = R.color.blue_background))){
-        MovieDetailList(movieList = movies,
+        MovieDetailList(
+            viewModel= viewModel,
+            onClick = onClick,
+            movieList = movies,
             emptyTitle = stringResource(id = R.string.watchlist_empty_title),
             emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
             emptyImg = R.mipmap.watchlist)

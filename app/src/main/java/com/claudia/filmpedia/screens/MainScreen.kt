@@ -22,18 +22,18 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.navigation.BottomTab.BottomBarItem
 import com.claudia.filmpedia.navigation.BottomTab.CustomBottomNavController
+import com.claudia.filmpedia.presentation.MovieViewModel
 
 @Composable
 fun MainScreen(
     navController: NavHostController,
-    movies: LazyPagingItems<Movie>,
-    upcoming: LazyPagingItems<Movie>,
-    topRated: LazyPagingItems<Movie>,
-    nowplaying: LazyPagingItems<Movie>,
+    viewModel: MovieViewModel
 ) {
+    val movies= viewModel.moviePagingFlow.collectAsLazyPagingItems()
     val context = LocalContext.current
     LaunchedEffect(key1 = movies) {
         if (movies.loadState.refresh is LoadState.Error) {
@@ -78,11 +78,8 @@ fun MainScreen(
         }
     ) {
         CustomBottomNavController(
-            navController = navController,
-            movies = movies,
-            upcoming = upcoming,
-            topRated = topRated,
-            nowplaying = nowplaying,
+            viewModel=viewModel,
+            navController = navController
         )
     }
 }

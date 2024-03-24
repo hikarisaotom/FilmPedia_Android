@@ -5,7 +5,7 @@ import androidx.paging.compose.LazyPagingItems
 import com.claudia.filmpedia.domain.Movie
 
 @Composable
-fun HorizontalImageList(movies: LazyPagingItems<Movie>) {
+fun HorizontalImageList(movies: LazyPagingItems<Movie>, onClick:()->Unit) {
     LazyRow {
         items(movies.itemCount) { index ->
            if(movies[index]!=null){

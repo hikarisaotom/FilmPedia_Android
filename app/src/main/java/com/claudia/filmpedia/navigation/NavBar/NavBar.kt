@@ -13,17 +13,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.claudia.filmpedia.components.template.CustomHorizontalPager
 import com.claudia.filmpedia.components.template.CustomTabRow
 import com.claudia.filmpedia.domain.Movie
+import com.claudia.filmpedia.presentation.MovieViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Navbar(upcoming: LazyPagingItems<Movie>,
-           topRated: LazyPagingItems<Movie>,
-           nowplaying: LazyPagingItems<Movie>
+fun Navbar(onClick:()->Unit, viewModel: MovieViewModel
 ) {
+    val upcoming= viewModel.upComingPagingFlow.collectAsLazyPagingItems()
+    val topRated= viewModel.topRatedPagingFlow.collectAsLazyPagingItems()
+    val nowplaying= viewModel.nowPlayingPagingFlow.collectAsLazyPagingItems()
     var selectedTabIndex by remember {
         mutableStateOf(0)
     }
@@ -35,9 +39,9 @@ fun Navbar(upcoming: LazyPagingItems<Movie>,
         selectedTabIndex = pagerState.currentPage
     }
     val tabItems = listOf(
-        TabItem(title="Now playing", items = nowplaying),
-        TabItem(title="Upcoming", items = upcoming),
-        TabItem(title="Top rated", items = topRated),
+        TabItem(title="Now playing", items = nowplaying, onClick= onClick),
+        TabItem(title="Upcoming", items = upcoming, onClick= onClick),
+        TabItem(title="Top rated", items = topRated, onClick= onClick),
     )
     Column(modifier = Modifier.fillMaxSize()) {
         CustomTabRow(selectedTabIndex = selectedTabIndex,
