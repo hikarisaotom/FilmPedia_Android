@@ -43,7 +43,7 @@ fun MovieDto.toUpcomingEntity():UpcomingEntity{
     )
 }
 
-fun MovieDto.toMTopRated():TopRatedEntity{
+fun MovieDto.toTopRatedEntity():TopRatedEntity{
     return TopRatedEntity(
         id = id,
         title = title,

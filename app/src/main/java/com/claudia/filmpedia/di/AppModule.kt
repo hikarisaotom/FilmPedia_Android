@@ -8,6 +8,12 @@ import androidx.room.Room
 import com.claudia.filmpedia.data.local.MovieDatabase
 import com.claudia.filmpedia.data.local.MovieEntity
 import com.claudia.filmpedia.data.local.MovieRemoteMediator
+import com.claudia.filmpedia.data.local.NowPlayingEntity
+import com.claudia.filmpedia.data.local.NowPlayingRemoteMediator
+import com.claudia.filmpedia.data.local.TopRatedEntity
+import com.claudia.filmpedia.data.local.TopRatedRemoteMediator
+import com.claudia.filmpedia.data.local.UpcomingEntity
+import com.claudia.filmpedia.data.local.UpcomingRemoteMediator
 import com.claudia.filmpedia.data.remote.MovieApi
 import dagger.Module
 import dagger.Provides
@@ -53,6 +59,40 @@ object AppModule {
                 movieDb.dao.pagingSource()
             }
         )
+    }
+    @Provides
+    @Singleton
+    fun provideUpcomingPager(movieDb:MovieDatabase, movieApi:MovieApi):Pager<Int,UpcomingEntity>{
+      return Pager(
+          config = PagingConfig(pageSize = 1),
+          remoteMediator = UpcomingRemoteMediator(movieDb,movieApi),
+          pagingSourceFactory = {
+              movieDb.dao.pagingUpcomingSource()
+          }
+      )
+    }
 
+    @Provides
+    @Singleton
+    fun provideTopRatedPager(movieDb:MovieDatabase, movieApi:MovieApi):Pager<Int,TopRatedEntity>{
+        return Pager(
+            config = PagingConfig(pageSize = 1),
+            remoteMediator = TopRatedRemoteMediator(movieDb,movieApi),
+            pagingSourceFactory = {
+                movieDb.dao.pagingTopRatedSource()
+            }
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun NowplayingPager(movieDb:MovieDatabase, movieApi:MovieApi):Pager<Int,NowPlayingEntity>{
+        return Pager(
+            config = PagingConfig(pageSize = 1),
+            remoteMediator = NowPlayingRemoteMediator(movieDb,movieApi),
+            pagingSourceFactory = {
+                movieDb.dao.pagingNowPlayingSource()
+            }
+        )
     }
 }
