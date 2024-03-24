@@ -1,4 +1,4 @@
-package com.claudia.filmpedia.models
+package com.claudia.filmpedia.domain
 
 data class Movie(
     val title: String,

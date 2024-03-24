@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountBox
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Lock
@@ -25,11 +24,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.claudia.filmpedia.components.atoms.Image
 import com.claudia.filmpedia.components.atoms.InformationItem
-import com.claudia.filmpedia.models.Movie
+import com.claudia.filmpedia.domain.Movie
 
 
 @Composable
-fun MovieDetailsPreview(movie:Movie){
+fun MovieDetailsPreview(movie: Movie){
     Row(
         modifier = Modifier
             .fillMaxWidth()
