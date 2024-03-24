@@ -47,6 +47,6 @@ fun Navbar(onClick:()->Unit, viewModel: MovieViewModel
         CustomTabRow(selectedTabIndex = selectedTabIndex,
             onTabSelected = { index -> selectedTabIndex = index }, tabItems= tabItems)
 
-        CustomHorizontalPager(pagerState = pagerState, tabItems= tabItems)
+        CustomHorizontalPager(pagerState = pagerState, tabItems= tabItems, viewModel=viewModel)
     }
 }

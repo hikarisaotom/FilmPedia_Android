@@ -9,12 +9,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Modifier
 import com.claudia.filmpedia.components.molecules.Page
 import com.claudia.filmpedia.navigation.NavBar.TabItem
+import com.claudia.filmpedia.presentation.MovieViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CustomHorizontalPager(
     pagerState: PagerState,
-    tabItems: List<TabItem>
+    tabItems: List<TabItem>,
+    viewModel: MovieViewModel
 ) {
    Column() {
        HorizontalPager(
@@ -24,7 +26,8 @@ fun CustomHorizontalPager(
                .fillMaxWidth()
                .weight(1f)
        ) { index ->
-           Page(item = tabItems[index])
+
+           Page(item = tabItems[index], viewModel=viewModel)
        }
    }
 }

@@ -33,7 +33,7 @@ fun HomeScreen(onClick:()->Unit, viewModel: MovieViewModel){
             )
         }else{
             Column {
-                HorizontalImageList( movies = movies,onClick=onClick)
+                HorizontalImageList(viewModel=viewModel,onClick=onClick)
                 Navbar(  viewModel=viewModel,onClick=onClick)
             }
         }

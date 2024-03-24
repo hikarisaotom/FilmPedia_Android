@@ -1,5 +1,6 @@
 package com.claudia.filmpedia.components.molecules
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.claudia.filmpedia.domain.Movie
 
 @Composable
-fun SlideCard(movie:Movie, number:Int){
+fun SlideCard(movie:Movie, number:Int, onClick:()->Unit){
     Spacer(modifier = Modifier.width(16.dp))
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(modifier = Modifier.fillMaxWidth().clickable (onClick=onClick ) ) {
         Image(imageurl = movie.imageUrl, height = 225.dp, width = 150.dp)
         Box(
             modifier = Modifier.align(Alignment.BottomStart)
