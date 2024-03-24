@@ -1,8 +1,25 @@
 package com.claudia.filmpedia.data.remote
 
-data class MovieDto ( val title: String,
-                      val rate: Double,
-                      val year: Int,
-                      val duration: Int,
-                      val imageUrl:String,
-                      val genre:String,)
+data class MovieDto (
+    val adult: Boolean,
+    val backdropPath: String?,
+    val genreIds: List<Int>,
+    val id: Int,
+    val originalLanguage: String,
+    val originalTitle: String,
+    val overview: String,
+    val popularity: Double,
+    val posterPath: String?,
+    val releaseDate: String,
+    val title: String,
+    val video: Boolean,
+    val voteAverage: Double,
+    val voteCount: Int
+        )
+
+data class MovieResponse(
+   val page: Int,
+    val results: List<MovieDto>,
+    val totalPages: Int,
+   val totalResults: Int
+)

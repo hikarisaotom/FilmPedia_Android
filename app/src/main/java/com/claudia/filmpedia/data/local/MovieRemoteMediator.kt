@@ -26,10 +26,10 @@ class MovieRemoteMediator (
                 LoadType.APPEND -> 1
                 LoadType.PREPEND -> 1
             }
-
-            val movies = movieApi.getMovies(
-                page = loadKey
-            )
+            val movies = movieApi.getPopularMovies(MovieApi.API_KEY).results
+//            val upcoming = movieApi.getUpcomingMovies(MovieApi.API_KEY)
+//            val nowPlaying = movieApi.getNowPlayingMovies(MovieApi.API_KEY)
+//            val topRated = movieApi.getTopRatedMovies(MovieApi.API_KEY)
 
             movieDb.withTransaction {
                 if(loadType == LoadType.REFRESH){
@@ -40,11 +40,14 @@ class MovieRemoteMediator (
             }
 
             MediatorResult.Success(
-                endOfPaginationReached = movies.isEmpty()
+//                endOfPaginationReached = movies.isEmpty()
+            endOfPaginationReached = true
             )
         }catch (e:IOException){
+            println("[DATA] $e")
             MediatorResult.Error(e)
         }catch (e:HttpException){
+            println("[DATA] $e")
             MediatorResult.Error(e)
         }
     }

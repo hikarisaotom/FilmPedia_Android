@@ -6,13 +6,13 @@ import com.claudia.filmpedia.domain.Movie
 
 fun MovieDto.toMovieEntity():MovieEntity{
     return MovieEntity(
-        id = 1,
+        id = id,
         title = title,
-        rate = rate,
-        year=year,
-        duration=duration,
-        imageUrl = imageUrl,
-        genre = genre
+        rate = popularity,
+        year=2019,
+        duration=0,
+        imageUrl = posterPath ?: "",
+        genre = title
     )
 }
 
