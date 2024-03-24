@@ -21,34 +21,55 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.atoms.InformationItem
 import com.claudia.filmpedia.components.molecules.Header
 import com.claudia.filmpedia.components.molecules.MovieDetailsPreview
 import com.claudia.filmpedia.components.molecules.ProfileBanner
+import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.presentation.MovieViewModel
+import kotlinx.coroutines.flow.toList
 
 @Composable
 fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
 
     val movie = viewModel.currentMovie.collectAsState().value
+    val watchListItems = viewModel.watchlistPagingFlow.collectAsLazyPagingItems()
+    var isInWatchList = false
+    for (i in 0 until watchListItems.itemCount) {
+        if (watchListItems[i]?.id == movie?.id) {
+            isInWatchList = true
+            break
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(colorResource(id = R.color.blue_background))
     ) {
-        Column() {
-            Header(
-                title = "Detail",
-                onBackClick = { navController.popBackStack() },
-                onInfoClick = { print("adding") })
-            if (movie != null) {
+        if (movie != null) {
+            Column() {
+                Header(
+                    title = "Detail",
+                    onBackClick = { navController.popBackStack() },
+                    onInfoClick = {
+                        viewModel.toggleWatchList(
+                            movie = movie,
+                            isInWatchList = isInWatchList
+                        )
+                    })
                 ProfileBanner(
-                    movie=movie
+                    movie = movie
                 )
                 Column(modifier = Modifier.padding(8.dp)) {
                     Row() {
-                        InformationItem(icon = Icons.Outlined.DateRange, text = movie.year.toString())
+                        InformationItem(
+                            icon = Icons.Outlined.DateRange,
+                            text = movie.year.toString()
+                        )
                         InformationItem(
                             icon = Icons.Outlined.CheckCircle,
                             text = movie.duration.toString()

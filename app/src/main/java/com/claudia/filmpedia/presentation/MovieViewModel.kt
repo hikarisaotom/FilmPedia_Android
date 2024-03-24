@@ -1,5 +1,6 @@
 package com.claudia.filmpedia.presentation
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -54,6 +55,7 @@ class MovieViewModel @Inject constructor(
     var watchlistPagingFlow =  watchListPager. flow.
     map { pagingData-> pagingData.map { it.toMovie() }}
         .cachedIn(viewModelScope)
+
     fun selectMovie(movie: Movie) {
         _currentMovie.value = movie
     }
@@ -62,7 +64,7 @@ class MovieViewModel @Inject constructor(
         _currentMovie.value = null
     }
 
-    fun insertWatchlist(movie:Movie){
+    private fun insertWatchlist(movie:Movie){
         viewModelScope.launch {
             val entry = WatchlistEntity(
                 id = movie.id,
@@ -85,14 +87,21 @@ class MovieViewModel @Inject constructor(
             pagingSourceFactory = { movieDb.dao.pagingWatchlistSource() }
         )
     }
-    fun removeWatchList(movie:Movie){
+    private fun removeWatchList(movie:Movie){
             viewModelScope.launch {
                 movieDb.dao.deleteById(movie.id)
                 loadWatchList()
             }
     }
+    fun toggleWatchList(movie:Movie, isInWatchList:Boolean){
+        if(isInWatchList){
+            removeWatchList(movie = movie)
+        }else{
+            insertWatchlist(movie = movie)
+        }
+    }
 
-    fun loadWatchList(){
+    private fun loadWatchList(){
         watchlistPagingFlow = getWatchlistPager().flow.map { pagingData ->
             pagingData.map { it.toMovie() }
         }.cachedIn(viewModelScope)
