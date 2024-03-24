@@ -28,7 +28,7 @@ data class NowPlayingEntity(
 )
 
 @Entity
-data class UpcomingEntry(
+data class UpcomingEntity(
     @PrimaryKey
     val id: Int,
     val title: String,
