@@ -12,8 +12,8 @@ fun MovieDto.toMovieEntity(video:Trailer?):MovieEntity{
     return MovieEntity(
         id = id,
         title = title,
-        rate = popularity,
-        year=2019,
+        rate = vote_average,
+        year=release_date.take(4).toInt(),
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
@@ -27,8 +27,8 @@ fun MovieDto.toNowPlayingEntity(video: Trailer?):NowPlayingEntity{
     return NowPlayingEntity(
         id = id,
         title = title,
-        rate = popularity,
-        year=2019,
+        rate = vote_average,
+        year=release_date.take(4).toInt(),
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
@@ -41,8 +41,8 @@ fun MovieDto.toUpcomingEntity(video: Trailer?):UpcomingEntity{
     return UpcomingEntity(
         id = id,
         title = title,
-        rate = popularity,
-        year=2019,
+        rate = vote_average,
+        year=release_date.take(4).toInt(),
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
@@ -55,8 +55,8 @@ fun MovieDto.toTopRatedEntity(video:Trailer?):TopRatedEntity{
     return TopRatedEntity(
         id = id,
         title = title,
-        rate = popularity,
-        year=2019,
+        rate = vote_average,
+        year=release_date.take(4).toInt(),
         duration=0,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
