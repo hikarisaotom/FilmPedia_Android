@@ -18,7 +18,7 @@ sealed class BottomBarItem(
         route = "home",
         title = "home",
         icon = Icons.Default.Home,
-        unselectedIcon = Icons.Default.Add
+        unselectedIcon = Icons.Default.Home
     )
     object Search: BottomBarItem(
         route = "Search",

@@ -2,6 +2,7 @@ package com.claudia.filmpedia.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,6 +17,7 @@ import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.claudia.filmpedia.R
+import com.claudia.filmpedia.components.molecules.Header
 import com.claudia.filmpedia.components.template.MovieDetailList
 import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.presentation.MovieViewModel
@@ -26,13 +28,16 @@ fun WatchList(onClick:()->Unit, viewModel:MovieViewModel){
     Box(modifier = Modifier
         .fillMaxSize()
         .background(colorResource(id = R.color.blue_background))){
-        MovieDetailList(
-            viewModel= viewModel,
-            onClick = onClick,
-            movieList = movies,
-            emptyTitle = stringResource(id = R.string.watchlist_empty_title),
-            emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
-            emptyImg = R.mipmap.watchlist)
+       Column() {
+           Header(title = "Watch List", onBackClick = {}, onInfoClick = {}, hideInfo = true)
+           MovieDetailList(
+               viewModel= viewModel,
+               onClick = onClick,
+               movieList = movies,
+               emptyTitle = stringResource(id = R.string.watchlist_empty_title),
+               emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
+               emptyImg = R.mipmap.watchlist)
+       }
 
     }
 }

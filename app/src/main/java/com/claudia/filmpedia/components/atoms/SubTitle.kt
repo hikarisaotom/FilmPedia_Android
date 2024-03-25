@@ -15,7 +15,7 @@ import com.claudia.filmpedia.R
 fun SubTitle(text: String) {
     Text(
         text = text,
-        color = Color.LightGray,
+        color = colorResource(id = R.color.subtitle_text),
         modifier = Modifier.fillMaxWidth(),
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Normal,

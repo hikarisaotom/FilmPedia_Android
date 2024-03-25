@@ -2,6 +2,7 @@
 package com.claudia.filmpedia.screens
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,12 +16,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.claudia.filmpedia.R
 import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.navigation.BottomTab.BottomBarItem
 import com.claudia.filmpedia.navigation.BottomTab.CustomBottomNavController
@@ -53,7 +58,7 @@ fun MainScreen(
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar(containerColor = colorResource(id = R.color.blue_background)) {
                 screens.forEachIndexed { index, item ->
                     NavigationBarItem(selected = index == selectedItemIndex,
                         onClick = {
@@ -63,11 +68,12 @@ fun MainScreen(
                         icon = {
                             Icon(
                                 imageVector = if (selectedItemIndex == index) item.icon else item.unselectedIcon,
-                                contentDescription = item.title
+                                tint = if (selectedItemIndex == index) colorResource(id = R.color.icon_color) else Color.White,
+                                contentDescription = item.title,
                             )
                         },
                         label = {
-                            Text(text = item.title)
+                            Text(text = item.title, color = Color.White)
                         }
 
                     )

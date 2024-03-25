@@ -20,9 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.atoms.Image
 import com.claudia.filmpedia.components.atoms.InformationItem
 import com.claudia.filmpedia.domain.Movie
@@ -35,7 +37,6 @@ fun MovieDetailsPreview(movie: Movie, onClick: () -> Unit, viewModel: MovieViewM
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp))
-            .background(Color.DarkGray)
             .padding(8.dp)
             .clickable (onClick = {
                 viewModel.selectMovie(movie = movie)

@@ -1,4 +1,5 @@
 package com.claudia.filmpedia.components.molecules
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -19,14 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun Header(
     title: String,
     onBackClick: () -> Unit,
     onInfoClick: () -> Unit,
-    isInWatchList: Boolean=false,
-    isWatchList:Boolean = false
+    hideInfo: Boolean = false,
+    isInWatchList: Boolean = false,
+    isWatchList: Boolean = false
 ) {
     Row(
         modifier = Modifier
@@ -41,33 +44,34 @@ fun Header(
                 tint = Color.White
             )
         }
-
-        Spacer(modifier = Modifier.width(16.dp))
-
+        Spacer(modifier = Modifier.weight(1f))
         Text(
             text = title,
             color = Color.White,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            fontSize = 24.sp,
 
-        )
+            )
 
         Spacer(modifier = Modifier.weight(1f))
+        if (!hideInfo) {
+            IconButton(onClick = {
+                onInfoClick()
+            }) {
+                val icon = if (isWatchList) {
+                    if (isInWatchList == true) Icons.Outlined.Star else Icons.Filled.Add
+                } else {
+                    Icons.Outlined.Info
+                }
 
-        IconButton(onClick = {
-            onInfoClick()
-        }) {
-            val icon = if (isWatchList) {
-                if (isInWatchList == true) Icons.Outlined.Star else Icons.Filled.Add
-            } else {
-                Icons.Outlined.Info
+                Icon(
+                    imageVector = icon,
+                    contentDescription = "Info",
+                    tint = Color.White
+                )
+
             }
-
-              Icon(
-                  imageVector = icon ,
-                  contentDescription = "Info",
-                  tint = Color.White
-              )
-
         }
+
     }
 }
