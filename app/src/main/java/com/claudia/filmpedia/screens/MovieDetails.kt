@@ -13,7 +13,12 @@ import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -22,29 +27,28 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.atoms.InformationItem
 import com.claudia.filmpedia.components.molecules.Header
-import com.claudia.filmpedia.components.molecules.MovieDetailsPreview
 import com.claudia.filmpedia.components.molecules.ProfileBanner
-import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.presentation.MovieViewModel
-import kotlinx.coroutines.flow.toList
 
 @Composable
 fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
 
     val movie = viewModel.currentMovie.collectAsState().value
     val watchListItems = viewModel.watchlistPagingFlow.collectAsLazyPagingItems()
-    var isInWatchList = false
-    for (i in 0 until watchListItems.itemCount) {
-        if (watchListItems[i]?.id == movie?.id) {
-            isInWatchList = true
-            break
-        }
+    var isInWatchList by remember {
+        mutableStateOf(false)
     }
-
+    fun isInside():Boolean{
+        for (i in 0 until watchListItems.itemCount) {
+            if (watchListItems[i]?.id == movie?.id) {
+               return true
+            }
+        }
+        return false
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -55,12 +59,14 @@ fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
                 Header(
                     title = "Detail",
                     onBackClick = { navController.popBackStack() },
+                    isInWatchList= isInside(),
                     onInfoClick = {
                         viewModel.toggleWatchList(
                             movie = movie,
-                            isInWatchList = isInWatchList
+                            isInWatchList = isInside()
                         )
-                    })
+                    },
+                    isWatchList = true,)
                 ProfileBanner(
                     movie = movie
                 )

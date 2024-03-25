@@ -64,7 +64,7 @@ class MovieViewModel @Inject constructor(
         _currentMovie.value = null
     }
 
-    private fun insertWatchlist(movie:Movie){
+     fun insertWatchlist(movie:Movie){
         viewModelScope.launch {
             val entry = WatchlistEntity(
                 id = movie.id,
@@ -87,7 +87,7 @@ class MovieViewModel @Inject constructor(
             pagingSourceFactory = { movieDb.dao.pagingWatchlistSource() }
         )
     }
-    private fun removeWatchList(movie:Movie){
+     fun removeWatchList(movie:Movie){
             viewModelScope.launch {
                 movieDb.dao.deleteById(movie.id)
                 loadWatchList()

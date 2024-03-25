@@ -6,14 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.claudia.filmpedia.components.atoms.CustomYoutubePlayer
 import com.claudia.filmpedia.presentation.MovieViewModel
+import com.claudia.filmpedia.screens.MainScreen
 import com.claudia.filmpedia.ui.theme.FilmPediaTheme
-import com.example.bottomnavbardemo.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

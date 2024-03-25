@@ -1,12 +1,19 @@
 package com.claudia.filmpedia.components.molecules
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,7 +24,9 @@ import androidx.compose.ui.unit.dp
 fun Header(
     title: String,
     onBackClick: () -> Unit,
-    onInfoClick: () -> Unit
+    onInfoClick: () -> Unit,
+    isInWatchList: Boolean=false,
+    isWatchList:Boolean = false
 ) {
     Row(
         modifier = Modifier
@@ -44,12 +53,21 @@ fun Header(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        IconButton(onClick = { onInfoClick() }) {
-            Icon(
-                imageVector = Icons.Outlined.Info,
-                contentDescription = "Info",
-                tint = Color.White
-            )
+        IconButton(onClick = {
+            onInfoClick()
+        }) {
+            val icon = if (isWatchList) {
+                if (isInWatchList == true) Icons.Outlined.Star else Icons.Filled.Add
+            } else {
+                Icons.Outlined.Info
+            }
+
+              Icon(
+                  imageVector = icon ,
+                  contentDescription = "Info",
+                  tint = Color.White
+              )
+
         }
     }
 }
