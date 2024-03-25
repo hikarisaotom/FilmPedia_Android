@@ -20,7 +20,10 @@ fun CustomBottomNavController(navController : NavHostController,
         startDestination = BottomBarItem.Home.route
     ) {
         composable(BottomBarItem.Home.route) {
-            HomeScreen(viewModel=viewModel, onClick = {navController.navigate("MovieDetails")})
+            HomeScreen(viewModel=viewModel,
+                onClick = {navController.navigate("MovieDetails")},
+                redirect= {navController.navigate(BottomBarItem.Search.route)}
+            )
         }
 
         composable(BottomBarItem.Search.route) {

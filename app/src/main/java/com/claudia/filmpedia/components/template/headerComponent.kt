@@ -8,11 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +41,7 @@ import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.molecules.Header
 import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.presentation.MovieViewModel
-import java.util.Locale
+import androidx.compose.material3.Icon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,27 +77,46 @@ fun HeaderComponent(onClick: () -> Unit,
             .background(colorResource(id = R.color.blue_background))
     ) {
         Column {
-            Header(title = "Search", onBackClick = {}, onInfoClick = {})
+            Header(title = "Search", onBackClick = {}, onInfoClick = {}, hideInfo = !search)
            if(search){
-               TextField(
-                   value = searchText,
-                   onValueChange = { newText ->
-                       searchText = newText
-                   },
-                   placeholder = { Text(text = "Search") },
-                   modifier = Modifier
-                       .fillMaxWidth()
-                       .height(50.dp)
-                       .background(colorResource(id = R.color.search_Input))
-                       .padding(start = 20.dp, end = 20.dp),
-                   textStyle = TextStyle(color = Color.Black),
-                   keyboardOptions = KeyboardOptions(
-                       keyboardType = KeyboardType.Text,
-                       imeAction = ImeAction.Search
-                   ),
-                   singleLine = true,
-                   maxLines = 1
-               )
+              Box(
+                  modifier = Modifier
+                      .fillMaxWidth()
+                      .height(50.dp)
+                      .background(colorResource(id = R.color.blue_background))
+                      .padding(start = 20.dp, end = 20.dp),
+              ) {
+                  TextField(
+                      value = searchText,
+                      onValueChange = { newText ->
+                          searchText = newText
+                      },
+                      placeholder = { Text(text = "Search", color =colorResource(id = R.color.subtitle_text) ) },
+                      modifier = Modifier
+                          .fillMaxWidth()
+                          .height(50.dp)
+                          .background(colorResource(id = R.color.search_Input))
+                          ,
+                      textStyle = TextStyle(color = Color.Black),
+                      keyboardOptions = KeyboardOptions(
+                          keyboardType = KeyboardType.Text,
+                          imeAction = ImeAction.Search
+                      ),
+                      colors = TextFieldDefaults.textFieldColors(
+                          containerColor = colorResource(id = R.color.search_Input),
+                          textColor= Color.White,
+
+
+                      focusedIndicatorColor =  Color.Transparent),
+                      trailingIcon = {
+                          Icon(Icons.Filled.Search, "", tint = colorResource(id = R.color.subtitle_text) )
+                      },
+                      singleLine = true,
+                      maxLines = 1,
+                       shape = RoundedCornerShape(60.dp)
+                  )
+
+              }
            }
             Spacer(modifier = Modifier.height(8.dp))
             if (movies.loadState.refresh is LoadState.Loading) {

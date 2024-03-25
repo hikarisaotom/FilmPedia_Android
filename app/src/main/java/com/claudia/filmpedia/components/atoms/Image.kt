@@ -22,7 +22,7 @@ fun Image(imageurl:String, height:Dp, width:Dp, padding:Dp = 8.dp){
         contentDescription = imageurl,
         modifier = Modifier.height(height)
             .width(width).padding(padding) ,
-        contentScale = ContentScale.Crop,
+        contentScale = ContentScale.Fit,
 
     )
 }

@@ -6,7 +6,9 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.claudia.filmpedia.components.molecules.Page
 import com.claudia.filmpedia.navigation.NavBar.TabItem
 import com.claudia.filmpedia.presentation.MovieViewModel
@@ -23,7 +25,7 @@ fun CustomHorizontalPager(
            pageCount = tabItems.size,
            state = pagerState,
            modifier = Modifier
-               .fillMaxWidth()
+               .fillMaxWidth().padding(start = 10.dp, end = 10.dp)
                .weight(1f)
        ) { index ->
 
