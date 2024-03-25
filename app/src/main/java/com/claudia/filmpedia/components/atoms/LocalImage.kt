@@ -15,7 +15,7 @@ fun LocalImage(imageResId: Int) {
         contentDescription = null,
         modifier = Modifier.height(200.dp)
             .width(300.dp).padding(8.dp),
-        contentScale = ContentScale.Crop,
+        contentScale = ContentScale.Fit,
 
     )
 }

@@ -8,14 +8,15 @@ import com.claudia.filmpedia.data.local.WatchlistEntity
 import com.claudia.filmpedia.data.remote.MovieDto
 import com.claudia.filmpedia.data.remote.Trailer
 import com.claudia.filmpedia.domain.Movie
+import java.text.DecimalFormat
 
 fun MovieDto.toMovieEntity(video:Trailer?):MovieEntity{
     return MovieEntity(
         id = id,
         title = title,
-        rate = vote_average,
+        rate = DecimalFormat("#.##").format(vote_average).toDouble(),
         year=release_date.take(4).toInt(),
-        duration=0,
+        duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
         overwiew = overview,
@@ -28,9 +29,9 @@ fun MovieDto.toNowPlayingEntity(video: Trailer?):NowPlayingEntity{
     return NowPlayingEntity(
         id = id,
         title = title,
-        rate = vote_average,
+        rate = DecimalFormat("#.##").format(vote_average).toDouble(),
         year=release_date.take(4).toInt(),
-        duration=0,
+        duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
         overwiew = overview,
@@ -42,9 +43,9 @@ fun MovieDto.toUpcomingEntity(video: Trailer?):UpcomingEntity{
     return UpcomingEntity(
         id = id,
         title = title,
-        rate = vote_average,
+        rate = DecimalFormat("#.##").format(vote_average).toDouble(),
         year=release_date.take(4).toInt(),
-        duration=0,
+        duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
         overwiew = overview,
@@ -56,9 +57,9 @@ fun MovieDto.toTopRatedEntity(video:Trailer?):TopRatedEntity{
     return TopRatedEntity(
         id = id,
         title = title,
-        rate = vote_average,
+        rate = DecimalFormat("#.##").format(vote_average).toDouble(),
         year=release_date.take(4).toInt(),
-        duration=0,
+        duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
         genre = title,
         overwiew = overview,

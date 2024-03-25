@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,7 +39,7 @@ fun HomeScreen(onClick:()->Unit, redirect:()->Unit,viewModel: MovieViewModel){
         }else{
             Column {
                 Spacer(modifier = Modifier.height(40.dp))
-                Text(text = "What do you want to watch?"
+                Text(text = stringResource(id = R.string.home_title)
                     ,color= Color.White,
                 fontSize = 22.sp,
                     fontWeight = FontWeight.Medium,

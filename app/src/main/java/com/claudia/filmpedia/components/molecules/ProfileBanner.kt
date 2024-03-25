@@ -10,9 +10,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.atoms.CustomYoutubePlayer
 import com.claudia.filmpedia.components.atoms.Image
 import com.claudia.filmpedia.components.atoms.InformationItem
@@ -31,12 +33,15 @@ fun ProfileBanner(
 
      }
         Box(modifier = Modifier
-            .align(Alignment.BottomEnd).padding(bottom = 150.dp, end = 20.dp)
+            .align(Alignment.BottomEnd)
+            .padding(bottom = 150.dp, end = 20.dp)
 
         ) {
             Box(modifier = Modifier
-                .background(color = Color.Gray, shape = RoundedCornerShape(16.dp))) {
-                InformationItem(icon = Icons.Outlined.Star, text = movie.rate.toString(), color = Color.Yellow)
+                .background(color = colorResource(id = R.color.search_Input), shape = RoundedCornerShape(16.dp))) {
+                InformationItem(icon = Icons.Outlined.Star, text = movie.rate.toString(), color = colorResource(
+                    id = R.color.orange
+                ))
             }
         }
         Row(

@@ -52,7 +52,8 @@ fun Search(onClick: () -> Unit, viewModel: MovieViewModel) {
         emptyImg = R.mipmap.search,
         viewModel = viewModel,
         onClick = onClick,
-        search = true
+        search = true,
+        headerTitle = R.string.search
     )
 
 }

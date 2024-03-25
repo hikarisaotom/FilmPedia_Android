@@ -33,6 +33,7 @@ fun WatchList(onClick: () -> Unit, viewModel: MovieViewModel) {
         emptyTitle = stringResource(id = R.string.watchlist_empty_title),
         emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
         emptyImg = R.mipmap.watchlist,
-        search = false
+        search = false,
+        headerTitle = R.string.watchlist
     )
 }

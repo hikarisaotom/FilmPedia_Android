@@ -38,10 +38,10 @@ fun MovieDetailsPreview(movie: Movie, onClick: () -> Unit, viewModel: MovieViewM
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp))
             .padding(8.dp)
-            .clickable (onClick = {
+            .clickable(onClick = {
                 viewModel.selectMovie(movie = movie)
                 onClick()
-            } ),
+            }),
         verticalAlignment = Alignment.CenterVertically
     ) {
      Image(imageurl = movie.imageUrl, height = 200.dp, width =150.dp )
@@ -53,7 +53,9 @@ fun MovieDetailsPreview(movie: Movie, onClick: () -> Unit, viewModel: MovieViewM
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
-           InformationItem(text = movie.rate.toString(), icon = Icons.Outlined.Star , color=Color.Yellow)
+           InformationItem(text = movie.rate.toString(), icon = Icons.Outlined.Star , color= colorResource(
+               id = R.color.orange
+           ))
             InformationItem(text = movie.genre, icon = Icons.Outlined.Info , color=Color.White)
             InformationItem(text = movie.year.toString(), icon = Icons.Outlined.DateRange , color=Color.White)
             InformationItem(text = movie.duration.toString(), icon = Icons.Outlined.Lock , color=Color.White)

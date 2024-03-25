@@ -17,7 +17,7 @@ import com.claudia.filmpedia.presentation.MovieViewModel
 @Composable
 fun CustomRowGrid(items: LazyPagingItems<Movie>, viewModel: MovieViewModel, onClick: () -> Unit) {
     LazyVerticalGrid(columns = GridCells.Fixed(3)) {
-        items(count = items.itemCount) { index ->
+        items(count = if(items.itemCount>1) 6 else items.itemCount) { index ->
             val movie = items[index]
             movie?.let { movieItem ->
                 Box(modifier = Modifier.clickable( onClick= {

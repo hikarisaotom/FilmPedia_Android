@@ -52,6 +52,7 @@ fun HeaderComponent(onClick: () -> Unit,
                     emptyTitle: String,
                     emptySubtitle: String,
                     emptyImg: Int,
+                    headerTitle:Int
                     ) {
     var searchText by remember {
         mutableStateOf(TextFieldValue(""))
@@ -77,7 +78,7 @@ fun HeaderComponent(onClick: () -> Unit,
             .background(colorResource(id = R.color.blue_background))
     ) {
         Column {
-            Header(title = "Search", onBackClick = {}, onInfoClick = {}, hideInfo = !search)
+            Header(title = stringResource(headerTitle), onBackClick = {}, onInfoClick = {}, hideInfo = !search)
            if(search){
               Box(
                   modifier = Modifier
@@ -97,7 +98,7 @@ fun HeaderComponent(onClick: () -> Unit,
                           .height(50.dp)
                           .background(colorResource(id = R.color.search_Input))
                           ,
-                      textStyle = TextStyle(color = Color.Black),
+                      textStyle = TextStyle(color = Color.White),
                       keyboardOptions = KeyboardOptions(
                           keyboardType = KeyboardType.Text,
                           imeAction = ImeAction.Search

@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.claudia.filmpedia.R
 
@@ -35,7 +36,7 @@ fun RoundedButton(
                 .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Search", color = Color.White)
+            Text(text = stringResource(id = R.string.search), color = Color.White)
         }
     }
 }
