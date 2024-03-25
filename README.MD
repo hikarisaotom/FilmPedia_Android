@@ -17,7 +17,7 @@ The app implemented an offline functionality model where movie information and t
 
 ## Demo 🚀
 
-You can see a demo for [Android](), or download both from this repository in the file `demos.zip`
+You can see a demo for [Android](https://drive.google.com/drive/folders/1he3ljJyNL_roFMM_UvpFSjvUtM1oZkq2), or download both from this repository in the file `demos.zip`
 
 ## Application Structure 🏗️
 
