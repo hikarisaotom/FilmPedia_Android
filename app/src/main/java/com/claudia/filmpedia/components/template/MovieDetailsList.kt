@@ -27,23 +27,19 @@ fun MovieDetailList(
     emptyTitle: String,
     emptySubtitle: String,
     emptyImg: Int,
-    searchText: String? = null
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         if (movieList.isEmpty()) {
             EmptyComponent(title = emptyTitle, subtitle = emptySubtitle, image = emptyImg)
         } else {
             LazyColumn() {
-                if (searchText.isNullOrEmpty()) {
-                    items(movieList.size) { i ->
-                        if (movieList[i] != null) {
-                            MovieDetailsPreview(
-                                movie = movieList[i],
-                                onClick = onClick,
-                                viewModel = viewModel
-                            )
-                        }
-
+                items(movieList.size) { i ->
+                    if (movieList[i] != null) {
+                        MovieDetailsPreview(
+                            movie = movieList[i],
+                            onClick = onClick,
+                            viewModel = viewModel
+                        )
                     }
 
                 }

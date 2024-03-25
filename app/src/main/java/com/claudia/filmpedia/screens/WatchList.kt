@@ -18,27 +18,21 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.claudia.filmpedia.R
 import com.claudia.filmpedia.components.molecules.Header
+import com.claudia.filmpedia.components.template.HeaderComponent
 import com.claudia.filmpedia.components.template.MovieDetailList
 import com.claudia.filmpedia.domain.Movie
 import com.claudia.filmpedia.presentation.MovieViewModel
 
 @Composable
-fun WatchList(onClick:()->Unit, viewModel:MovieViewModel){
-    val movies= viewModel.watchlistPagingFlow.collectAsLazyPagingItems()
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(colorResource(id = R.color.blue_background))){
-       Column() {
-           Header(title = "Watch List", onBackClick = {}, onInfoClick = {}, hideInfo = true)
-//           MovieDetailList(
-//               viewModel= viewModel,
-//               onClick = onClick,
-//               movieList = movies,
-//               emptyTitle = stringResource(id = R.string.watchlist_empty_title),
-//               emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
-//               emptyImg = R.mipmap.watchlist,
-//           )
-       }
-
-    }
+fun WatchList(onClick: () -> Unit, viewModel: MovieViewModel) {
+    val movies = viewModel.watchlistPagingFlow.collectAsLazyPagingItems()
+    HeaderComponent(
+        viewModel = viewModel,
+        onClick = onClick,
+        movies = movies,
+        emptyTitle = stringResource(id = R.string.watchlist_empty_title),
+        emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
+        emptyImg = R.mipmap.watchlist,
+        search = false
+    )
 }
