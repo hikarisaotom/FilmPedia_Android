@@ -18,7 +18,7 @@ fun MovieDto.toMovieEntity(video:Trailer?):MovieEntity{
         year=release_date.take(4).toInt(),
         duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title,
+        genre = original_language,
         overwiew = overview,
         videoKey = video?.key ?: ""
 
@@ -33,7 +33,7 @@ fun MovieDto.toNowPlayingEntity(video: Trailer?):NowPlayingEntity{
         year=release_date.take(4).toInt(),
         duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title,
+        genre = original_language,
         overwiew = overview,
         videoKey = video?.key ?: ""
     )
@@ -47,7 +47,7 @@ fun MovieDto.toUpcomingEntity(video: Trailer?):UpcomingEntity{
         year=release_date.take(4).toInt(),
         duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title,
+        genre = original_language,
         overwiew = overview,
         videoKey = video?.key ?: ""
     )
@@ -61,7 +61,7 @@ fun MovieDto.toTopRatedEntity(video:Trailer?):TopRatedEntity{
         year=release_date.take(4).toInt(),
         duration= vote_count,
         imageUrl = "https://image.tmdb.org/t/p/w500/"+poster_path ?: "",
-        genre = title,
+        genre = original_language,
         overwiew = overview,
         videoKey = video?.key ?: ""
     )

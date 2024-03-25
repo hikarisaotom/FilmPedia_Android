@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DateRange
+import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Star
@@ -58,7 +59,7 @@ fun MovieDetailsPreview(movie: Movie, onClick: () -> Unit, viewModel: MovieViewM
            ))
             InformationItem(text = movie.genre, icon = Icons.Outlined.Info , color=Color.White)
             InformationItem(text = movie.year.toString(), icon = Icons.Outlined.DateRange , color=Color.White)
-            InformationItem(text = movie.duration.toString(), icon = Icons.Outlined.Lock , color=Color.White)
+            InformationItem(text = movie.duration.toString(), icon = Icons.Outlined.Face , color=Color.White)
 
         }
     }

@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.DateRange
+import androidx.compose.material.icons.outlined.Face
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,9 +41,7 @@ fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
 
     val movie = viewModel.currentMovie.collectAsState().value
     val watchListItems = viewModel.watchlistPagingFlow.collectAsLazyPagingItems()
-    var isInWatchList by remember {
-        mutableStateOf(false)
-    }
+
     fun isInside():Boolean{
         for (i in 0 until watchListItems.itemCount) {
             if (watchListItems[i]?.id == movie?.id) {
@@ -77,7 +78,7 @@ fun MovieDetails(navController: NavController, viewModel: MovieViewModel) {
                             text = movie.year.toString()
                         )
                         InformationItem(
-                            icon = Icons.Outlined.CheckCircle,
+                            icon = Icons.Outlined.Face,
                             text = movie.duration.toString()
                         )
                         InformationItem(icon = Icons.Outlined.Info, text = movie.genre.toString())
