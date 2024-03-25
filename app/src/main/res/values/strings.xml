@@ -8,5 +8,7 @@
     <string name="watchlist_empty_title">There Is No Movie Yet!</string>
     <string name="watchlist_empty_subtitle">Find your movie by Type title, categories, years, etc</string>
     <string name="home_title">What do you want to watch?</string>
+    <string name="added">Added to your watchlist</string>
+    <string name="removed">Removed from your watchlist</string>
 
 </resources>
