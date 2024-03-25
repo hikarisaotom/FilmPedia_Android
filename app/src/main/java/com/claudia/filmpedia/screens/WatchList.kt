@@ -30,13 +30,14 @@ fun WatchList(onClick:()->Unit, viewModel:MovieViewModel){
         .background(colorResource(id = R.color.blue_background))){
        Column() {
            Header(title = "Watch List", onBackClick = {}, onInfoClick = {}, hideInfo = true)
-           MovieDetailList(
-               viewModel= viewModel,
-               onClick = onClick,
-               movieList = movies,
-               emptyTitle = stringResource(id = R.string.watchlist_empty_title),
-               emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
-               emptyImg = R.mipmap.watchlist)
+//           MovieDetailList(
+//               viewModel= viewModel,
+//               onClick = onClick,
+//               movieList = movies,
+//               emptyTitle = stringResource(id = R.string.watchlist_empty_title),
+//               emptySubtitle = stringResource(id = R.string.watchlist_empty_subtitle),
+//               emptyImg = R.mipmap.watchlist,
+//           )
        }
 
     }
